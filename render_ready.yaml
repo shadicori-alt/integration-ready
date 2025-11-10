@@ -1,0 +1,10 @@
+services:
+  - type: web_service
+    name: integration-ready
+    env: node
+    branch: main
+    buildCommand: "npm install"
+    startCommand: "npm start"
+    plan: free
+    # Optional: health check path (uncomment if your app serves a /health endpoint)
+    # healthCheckPath: "/.well-known/health"
