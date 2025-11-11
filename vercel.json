@@ -1,10 +1,11 @@
 {
   "version": 2,
   "builds": [
-    { "src": "api/index.js", "use": "@vercel/node" }
+    { "src": "api/index.js", "use": "@vercel/node" },
+    { "src": "dashboard_mobile.html", "use": "@vercel/static" }
   ],
   "routes": [
+    { "src": "/dashboard_mobile.html", "dest": "/dashboard_mobile.html" },
     { "src": "/(.*)", "dest": "/api/index.js" }
   ]
 }
-
