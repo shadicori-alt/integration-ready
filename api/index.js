@@ -1,6 +1,45 @@
-export default function handler(req, res) {
-  res.status(200).json({
-    message: "✅ API is connected and running successfully!",
-    note: "أضف كودك هنا لتشغيل الأداة أو الرد التلقائي."
+export default async function handler(req, res) {
+  // ✅ في حالة الفحص أو التأكد من التشغيل
+  if (req.method === "GET") {
+    return res.status(200).json({
+      message: "✅ API is running successfully!",
+      note: "الواجهة متصلة الآن — يمكنك بدء تشغيل الأداة."
+    });
+  }
+
+  // ✅ في حالة استلام أوامر من الواجهة (POST)
+  if (req.method === "POST") {
+    const { action, data } = req.body;
+
+    switch (action) {
+      // اختبار الاتصال بين الواجهة والسيرفر
+      case "test_connection":
+        return res.status(200).json({
+          reply: "📡 الاتصال ناجح مع النظام، السيرفر يعمل بكفاءة."
+        });
+
+      // إرسال رسالة تجريبية من الواجهة إلى النظام
+      case "send_message":
+        return res.status(200).json({
+          reply: `💬 تم استقبال الرسالة بنجاح: ${data}`
+        });
+
+      // الرد الذكي المبدئي (لاحقًا نربطه بـ OpenAI أو DeepStack)
+      case "ai_reply":
+        return res.status(200).json({
+          reply: `🤖 رد ذكي مبدئي: ${data}`
+        });
+
+      // حالة طلب غير معروف
+      default:
+        return res.status(400).json({
+          error: "⚠️ لم يتم التعرف على نوع الطلب المرسل من الواجهة."
+        });
+    }
+  }
+
+  // ❌ في حالة إرسال نوع طلب غير مدعوم
+  return res.status(405).json({
+    error: "❌ نوع الطلب غير مدعوم. استخدم GET أو POST فقط."
   });
 }
