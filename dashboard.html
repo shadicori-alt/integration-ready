@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>لوحة التحكم الرئيسية</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>لوحة تحكم النظام الذكي</h1>
+    <nav>
+      <button onclick="openSection('messages')">📩 الرسائل</button>
+      <button onclick="openSection('comments')">💬 التعليقات</button>
+      <button onclick="openSection('pages')">📘 الصفحات</button>
+      <button onclick="openSection('ai')">🤖 المساعد الذكي</button>
+      <button onclick="openSection('orders')">📦 الطلبات</button>
+      <button onclick="openSection('settings')">⚙️ الإعدادات</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="messages" class="active">
+      <h2>📩 إدارة الرسائل</h2>
+      <textarea id="msgInput" placeholder="اكتب رسالة اختبار..."></textarea>
+      <button onclick="sendMessage()">إرسال</button>
+      <div class="response" id="msgResponse"></div>
+    </section>
+
+    <section id="comments">
+      <h2>💬 إدارة التعليقات</h2>
+      <input id="commentInput" placeholder="اكتب تعليق للرد..." />
+      <button onclick="sendComment()">رد على تعليق</button>
+      <div class="response" id="commentResponse"></div>
+    </section>
+
+    <section id="pages">
+      <h2>📘 إدارة الصفحات</h2>
+      <p>اختر الصفحة التي تريد ربطها أو تعديل إعداداتها.</p>
+      <button onclick="fakeConnect('facebook')">ربط فيسبوك</button>
+      <button onclick="fakeConnect('whatsapp')">ربط واتساب</button>
+      <div class="response" id="connectResponse"></div>
+    </section>
+
+    <section id="ai">
+      <h2>🤖 المساعد الذكي</h2>
+      <textarea id="aiInput" placeholder="اسأل المساعد..."></textarea>
+      <button onclick="askAI()">أرسل</button>
+      <div class="response" id="aiResponse"></div>
+    </section>
+
+    <section id="orders">
+      <h2>📦 إدارة الطلبات</h2>
+      <input id="orderInput" placeholder="اكتب رقم الطلب..." />
+      <button onclick="saveOrder()">حفظ الطلب</button>
+      <div class="response" id="orderResponse"></div>
+    </section>
+
+    <section id="settings">
+      <h2>⚙️ الإعدادات العامة</h2>
+      <p>إدارة إعدادات الربط والـ API.</p>
+      <button onclick="testConnection()">اختبار الاتصال</button>
+      <div class="response" id="testResponse"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 - نظام الإدارة الذكي</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
